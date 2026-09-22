@@ -284,10 +284,11 @@ export function applyStockChange(opts: {
 }) {
   const products = getAll("products");
   const i = products.findIndex((p) => p.id === opts.productId);
-  if (i >= 0) {
+  const existing = products[i];
+  if (existing) {
     products[i] = {
-      ...products[i],
-      stock: Math.max(0, (products[i].stock || 0) + opts.delta),
+      ...existing,
+      stock: Math.max(0, (existing.stock || 0) + opts.delta),
       updatedAt: new Date().toISOString(),
     };
     setAll("products", products);
