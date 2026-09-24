@@ -32,7 +32,7 @@ function Expenses() {
 
   const save = () => {
     if (!draft) return;
-    if (!draft.amount || draft.amount <= 0) return toast.error("Enter an amount.");
+    if (!draft.amount || draft.amount <= 0) { toast.error("Enter an amount."); return; }
     upsert("expenses", draft);
     toast.success("Expense saved.");
     setDraft(null);

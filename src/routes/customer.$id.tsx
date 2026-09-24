@@ -28,7 +28,7 @@ function PetDialog({ pet, onClose }: { pet: Pet | null; onClose: () => void }) {
   if (pet && (!draft || draft.id !== pet.id)) setDraft(pet);
   const set = (p: Partial<Pet>) => setDraft((d) => (d ? { ...d, ...p } : d));
   const save = () => {
-    if (!draft?.name.trim()) return toast.error("Pet name is required.");
+    if (!draft?.name.trim()) { toast.error("Pet name is required."); return; }
     upsert("pets", draft);
     toast.success("Pet saved.");
     onClose();
