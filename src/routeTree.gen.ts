@@ -11,11 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CustomersRouteImport } from './routes/customers'
+import { Route as ExpensesRouteImport } from './routes/expenses'
 import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as MoreRouteImport } from './routes/more'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as PurchasesRouteImport } from './routes/purchases'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as SalesRouteImport } from './routes/sales'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SuppliersRouteImport } from './routes/suppliers'
+import { Route as CustomerIdRouteImport } from './routes/customer.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 import { Route as SaleIdRouteImport } from './routes/sale.$id'
 
@@ -29,9 +34,19 @@ const CustomersRoute = CustomersRouteImport.update({
   path: '/customers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExpensesRoute = ExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InventoryRoute = InventoryRouteImport.update({
   id: '/inventory',
   path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoreRoute = MoreRouteImport.update({
+  id: '/more',
+  path: '/more',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsRoute = ProductsRouteImport.update({
@@ -44,14 +59,29 @@ const PurchasesRoute = PurchasesRouteImport.update({
   path: '/purchases',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SalesRoute = SalesRouteImport.update({
   id: '/sales',
   path: '/sales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SuppliersRoute = SuppliersRouteImport.update({
   id: '/suppliers',
   path: '/suppliers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerIdRoute = CustomerIdRouteImport.update({
+  id: '/customer/$id',
+  path: '/customer/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductIdRoute = ProductIdRouteImport.update({
@@ -68,22 +98,32 @@ const SaleIdRoute = SaleIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/customers': typeof CustomersRoute
+  '/expenses': typeof ExpensesRoute
   '/inventory': typeof InventoryRoute
+  '/more': typeof MoreRoute
   '/products': typeof ProductsRoute
   '/purchases': typeof PurchasesRoute
+  '/reports': typeof ReportsRoute
   '/sales': typeof SalesRoute
+  '/settings': typeof SettingsRoute
   '/suppliers': typeof SuppliersRoute
+  '/customer/$id': typeof CustomerIdRoute
   '/product/$id': typeof ProductIdRoute
   '/sale/$id': typeof SaleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/customers': typeof CustomersRoute
+  '/expenses': typeof ExpensesRoute
   '/inventory': typeof InventoryRoute
+  '/more': typeof MoreRoute
   '/products': typeof ProductsRoute
   '/purchases': typeof PurchasesRoute
+  '/reports': typeof ReportsRoute
   '/sales': typeof SalesRoute
+  '/settings': typeof SettingsRoute
   '/suppliers': typeof SuppliersRoute
+  '/customer/$id': typeof CustomerIdRoute
   '/product/$id': typeof ProductIdRoute
   '/sale/$id': typeof SaleIdRoute
 }
@@ -91,11 +131,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/customers': typeof CustomersRoute
+  '/expenses': typeof ExpensesRoute
   '/inventory': typeof InventoryRoute
+  '/more': typeof MoreRoute
   '/products': typeof ProductsRoute
   '/purchases': typeof PurchasesRoute
+  '/reports': typeof ReportsRoute
   '/sales': typeof SalesRoute
+  '/settings': typeof SettingsRoute
   '/suppliers': typeof SuppliersRoute
+  '/customer/$id': typeof CustomerIdRoute
   '/product/$id': typeof ProductIdRoute
   '/sale/$id': typeof SaleIdRoute
 }
@@ -104,33 +149,48 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/customers'
+    | '/expenses'
     | '/inventory'
+    | '/more'
     | '/products'
     | '/purchases'
+    | '/reports'
     | '/sales'
+    | '/settings'
     | '/suppliers'
+    | '/customer/$id'
     | '/product/$id'
     | '/sale/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/customers'
+    | '/expenses'
     | '/inventory'
+    | '/more'
     | '/products'
     | '/purchases'
+    | '/reports'
     | '/sales'
+    | '/settings'
     | '/suppliers'
+    | '/customer/$id'
     | '/product/$id'
     | '/sale/$id'
   id:
     | '__root__'
     | '/'
     | '/customers'
+    | '/expenses'
     | '/inventory'
+    | '/more'
     | '/products'
     | '/purchases'
+    | '/reports'
     | '/sales'
+    | '/settings'
     | '/suppliers'
+    | '/customer/$id'
     | '/product/$id'
     | '/sale/$id'
   fileRoutesById: FileRoutesById
@@ -138,11 +198,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CustomersRoute: typeof CustomersRoute
+  ExpensesRoute: typeof ExpensesRoute
   InventoryRoute: typeof InventoryRoute
+  MoreRoute: typeof MoreRoute
   ProductsRoute: typeof ProductsRoute
   PurchasesRoute: typeof PurchasesRoute
+  ReportsRoute: typeof ReportsRoute
   SalesRoute: typeof SalesRoute
+  SettingsRoute: typeof SettingsRoute
   SuppliersRoute: typeof SuppliersRoute
+  CustomerIdRoute: typeof CustomerIdRoute
   ProductIdRoute: typeof ProductIdRoute
   SaleIdRoute: typeof SaleIdRoute
 }
@@ -163,11 +228,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/expenses': {
+      id: '/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof ExpensesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/inventory': {
       id: '/inventory'
       path: '/inventory'
       fullPath: '/inventory'
       preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/more': {
+      id: '/more'
+      path: '/more'
+      fullPath: '/more'
+      preLoaderRoute: typeof MoreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products': {
@@ -184,6 +263,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PurchasesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sales': {
       id: '/sales'
       path: '/sales'
@@ -191,11 +277,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/suppliers': {
       id: '/suppliers'
       path: '/suppliers'
       fullPath: '/suppliers'
       preLoaderRoute: typeof SuppliersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/$id': {
+      id: '/customer/$id'
+      path: '/customer/$id'
+      fullPath: '/customer/$id'
+      preLoaderRoute: typeof CustomerIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product/$id': {
@@ -218,11 +318,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CustomersRoute: CustomersRoute,
+  ExpensesRoute: ExpensesRoute,
   InventoryRoute: InventoryRoute,
+  MoreRoute: MoreRoute,
   ProductsRoute: ProductsRoute,
   PurchasesRoute: PurchasesRoute,
+  ReportsRoute: ReportsRoute,
   SalesRoute: SalesRoute,
+  SettingsRoute: SettingsRoute,
   SuppliersRoute: SuppliersRoute,
+  CustomerIdRoute: CustomerIdRoute,
   ProductIdRoute: ProductIdRoute,
   SaleIdRoute: SaleIdRoute,
 }
