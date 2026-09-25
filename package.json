@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "build:android": "CAPACITOR=1 vite build && npx cap sync android"
+    "build:android": "cross-env CAPACITOR=1 vite build && npx cap sync android"
   },
   "overrides": {
     "rolldown": "1.2.1"
